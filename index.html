@@ -741,9 +741,7 @@ section>*{position:relative;z-index:1}
 }
 @keyframes goldSweep{from{background-position:0% 50%}to{background-position:260% 50%}}
 
-/* Hero: Ken Burns lento */
-.h-bg img{animation:kb 20s ease-in-out infinite alternate;transform-origin:50% 40%}
-@keyframes kb{from{transform:scale(1)}to{transform:scale(1.07)}}
+
 
 /* Títulos por palabra */
 .tw{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em}
@@ -902,7 +900,126 @@ body{font-weight:500}
 .ft-note{opacity:.65;font-size:13px}
 .el-credit{opacity:.65;font-size:11px}
 .btn{font-size:12px;font-weight:700}
-@media(prefers-reduced-motion:reduce){.lev,.pin-beat,.dc-illustration,.rsvp-btn,.h-bg img,.clk-pend{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.lev,.pin-beat,.dc-illustration,.rsvp-btn,.clk-pend{animation:none!important}}
+
+/* ═══════ PAQUETE DE EFECTOS ═══════ */
+/* 1 · Hero: texto abajo, deriva lenta, brillo */
+#hero{justify-content:flex-end!important;padding-bottom:0!important}
+.h-cnt{padding-bottom:110px}
+@media(max-width:1023px){.h-cnt{padding-bottom:170px}.h-scroll{bottom:96px!important}}
+.h-ov{background:
+  radial-gradient(ellipse at 50% 30%,rgba(8,8,8,.25) 0%,transparent 60%),
+  linear-gradient(to bottom,rgba(0,0,0,.55) 0%,rgba(0,0,0,.08) 28%,rgba(0,0,0,.18) 48%,rgba(0,0,0,.72) 72%,rgba(0,0,0,.92) 100%)!important}
+.h-bg{overflow:hidden}
+.hero-drift{position:absolute;inset:-4%;background-size:cover;background-position:center 35%;
+  filter:brightness(.5) saturate(1.1) contrast(1.05);animation:heroDrift 26s ease-in-out infinite alternate}
+@keyframes heroDrift{0%{transform:translate(-1%,-1.5%) scale(1.02)}100%{transform:translate(1.6%,1.2%) scale(1.10)}}
+.hero-sheen{position:absolute;inset:0;mix-blend-mode:soft-light;pointer-events:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,236,180,.55) 46%,rgba(255,255,255,.25) 50%,transparent 64%);
+  background-size:300% 100%;animation:heroSheen 9s ease-in-out infinite}
+@keyframes heroSheen{0%{background-position:120% 0}100%{background-position:-120% 0}}
+
+/* 2 · Fundidos entre secciones */
+#main-content > section, #footer{isolation:isolate;position:relative}
+#countdown,#calendar,#footer,#gracias{border-top:none!important;border-bottom:none!important}
+.sf{position:absolute!important;left:0;right:0;z-index:-1!important;pointer-events:none}
+.sf-top{top:0}.sf-bot{bottom:0}
+.sf-hero{z-index:2!important}
+
+/* 3 · Tintas Lekshmy en negro y oro */
+.ink-bg{position:absolute!important;inset:0;z-index:-2!important;overflow:hidden;pointer-events:none;
+  -webkit-mask-image:linear-gradient(transparent 0,#000 150px,#000 calc(100% - 150px),transparent);
+  mask-image:linear-gradient(transparent 0,#000 150px,#000 calc(100% - 150px),transparent)}
+.ink-bg.flip{transform:scaleX(-1)}
+.ink-bg.soft{opacity:.5}
+.ink-bg i{position:absolute;inset:-6%;background-size:cover;background-position:center;animation:inkDrift 28s ease-in-out infinite alternate}
+@keyframes inkDrift{0%{transform:translate(-2.5%,-1.5%) scale(1) rotate(-.6deg)}100%{transform:translate(2.5%,1.5%) scale(1.1) rotate(.6deg)}}
+.has-ink .lbl,.has-ink .ttl,.has-ink .itv3-time,.has-ink .itv3-ev,.has-ink .itv3-sub,.has-ink .fam-ttl,
+.has-ink .dc-cap,.has-ink .pal-nm,.has-ink .alb-sub,.has-ink .alb-hint,.has-ink .gr-text,.has-ink .rsvp-text,
+.has-ink .cd-intro,.has-ink .cd-lbl,.has-ink .dc-fig-label,.has-ink .loc-addr{
+  text-shadow:0 0 14px rgba(8,8,8,.95),0 0 4px rgba(8,8,8,.9)}
+
+/* 4 · Tarjetas que levitan */
+@keyframes levitate{0%,100%{transform:translateY(0) rotate(-.6deg)}50%{transform:translateY(-9px) rotate(.6deg)}}
+.lev{animation:levitate 6.5s ease-in-out infinite!important}
+.fam-card{animation:levitate 6.5s ease-in-out infinite}
+.fam-card:nth-of-type(3n+2){animation-delay:-2.2s}
+.fam-card:nth-of-type(3n){animation-delay:-4.1s}
+
+/* 5 · Vestimenta (fabiola-y-fernando) */
+.dc-figs{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:360px;margin:6px auto 26px}
+.dc-fig{display:flex;flex-direction:column;align-items:center;gap:12px;margin:0;position:relative}
+.dc-fig::before{content:'';position:absolute;top:2%;left:50%;width:135%;height:80%;transform:translateX(-50%);z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(245,232,190,.30),rgba(212,175,55,.10) 45%,transparent 70%)}
+.dc-fig img{height:230px;width:auto;display:block;transform-origin:50% 100%;
+  filter:drop-shadow(0 10px 16px rgba(0,0,0,.55));animation:figSway 6.5s ease-in-out infinite}
+.dc-fig:nth-child(2) img{animation-delay:-2.2s}
+@keyframes figSway{0%,100%{transform:translateY(0) rotate(-1.4deg)}50%{transform:translateY(-9px) rotate(1.4deg)}}
+.dc-fig-label{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:20px;color:#F1DC8A}
+.palette{position:relative}
+.pal-sw{position:relative;overflow:hidden;animation:swGlow 3s ease-in-out infinite}
+.pal-sw::before{content:'';position:absolute;top:-20%;left:-80%;width:50%;height:140%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,245,210,.6),transparent);transform:skewX(-18deg);animation:swSheen 4.2s ease-in-out infinite}
+@keyframes swGlow{0%,100%{box-shadow:0 4px 14px rgba(0,0,0,.4),0 0 0 1px rgba(212,175,55,.2),0 0 6px rgba(212,175,55,.15)}
+  50%{box-shadow:0 4px 14px rgba(0,0,0,.4),0 0 0 1px rgba(212,175,55,.5),0 0 22px rgba(212,175,55,.55)}}
+@keyframes swSheen{0%,55%{left:-80%}100%{left:140%}}
+.pal-nm{font-family:'Raleway',sans-serif!important;font-size:12px!important;font-weight:700!important;letter-spacing:.12em!important;opacity:.9!important}
+
+/* 8 · Galería con espejo y lightbox */
+.wheel-scene{height:clamp(500px,138vw,620px)!important}
+.wheel-card{top:44%!important;overflow:visible!important;border:none!important;box-shadow:none!important;border-radius:0!important}
+.wc-photo{position:absolute;inset:0;border-radius:16px;overflow:hidden;border:2px solid rgba(212,175,55,.32);
+  box-shadow:0 12px 40px rgba(180,150,85,.2),0 2px 8px rgba(0,0,0,.35)}
+.wc-photo img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.wc-ref{position:absolute;left:0;right:0;top:calc(100% + 6px);height:40%;border-radius:16px;overflow:hidden;transform:scaleY(-1);pointer-events:none}
+.wc-ref img{position:absolute;left:0;bottom:0;width:100%;height:250%;object-fit:cover;display:block}
+.wc-ref::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,24,18,1) 0%,rgba(26,24,18,.75) 45%,rgba(26,24,18,.35) 100%)}
+#lb{position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;background:rgba(8,8,8,.94);
+  opacity:0;pointer-events:none;transition:opacity .35s ease}
+#lb.on{opacity:1;pointer-events:auto}
+#lb img{max-width:92vw;max-height:82vh;border-radius:12px;border:1px solid rgba(212,175,55,.45);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#lb button{position:absolute;top:max(16px,env(safe-area-inset-top));right:16px;width:46px;height:46px;border-radius:50%;
+  border:1px solid rgba(212,175,55,.45);background:rgba(8,8,8,.6);color:var(--gold);font-size:18px;cursor:pointer}
+
+/* 9 · RSVP (jennifer-y-marcel en negro y oro) */
+.rsvp-hi{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(26px,7vw,32px);color:#F1DC8A;margin:6px 0 4px;line-height:1.25}
+.rsvp-note{font-size:17px;color:var(--cream);opacity:.88;font-weight:500}
+.rsvp-boxes{display:flex;justify-content:center;gap:12px;margin:16px 0 4px}
+.rsvp-pases{display:flex;flex-direction:column;align-items:center;padding:12px 26px;border:1px solid rgba(212,175,55,.45);border-radius:16px;background:rgba(212,175,55,.06)}
+.rsvp-pases-label{font-family:'Raleway',sans-serif;font-weight:700;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);padding-left:.3em}
+.rsvp-pases-num{font-family:'Playfair Display',serif;font-weight:600;font-size:46px;line-height:1.05;color:#F1DC8A}
+#rsvp-bandeja{max-width:420px;margin:0 auto}
+.rsvp-toggle{display:grid!important;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0!important}
+.rsvp-toggle-btn{min-height:52px;border-radius:14px!important;font-family:'Raleway',sans-serif!important;font-style:normal!important;font-weight:700!important;font-size:15px!important}
+.rsvp-toggle-btn.on{background:linear-gradient(135deg,#F1DC8A,#D4AF37 55%,#A8841F)!important;border-color:#D4AF37!important;color:#080808!important}
+.rsvp-fields{display:grid;gap:10px;margin:16px auto 0!important}
+.rsvp-input{font-family:'Raleway',sans-serif!important;font-size:16px!important;font-weight:500!important}
+.rsvp-btn{margin-top:18px!important}
+.rsvp-gracias{max-width:400px;margin:20px auto 0;padding:28px 22px;border:1px solid rgba(212,175,55,.45);border-radius:16px;background:rgba(212,175,55,.06)}
+.rsvp-gracias-icon{color:var(--gold);margin:0 auto 10px;display:block}
+.rsvp-gracias-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#F1DC8A;margin-bottom:8px;line-height:1.3}
+.rsvp-gracias-sub{font-size:17px;color:var(--cream);opacity:.9;line-height:1.6;margin-bottom:18px}
+.rsvp-editar-btn{min-height:46px;padding:10px 22px;border:1.5px solid rgba(212,175,55,.5);background:transparent;cursor:pointer;
+  font-family:'Raleway',sans-serif;font-weight:700;font-size:14px;color:var(--gold);border-radius:999px}
+.rsvp-editar-btn:disabled{opacity:.45;cursor:not-allowed}
+#rsvp-feedback{font-family:'Raleway',sans-serif!important;font-style:normal!important;font-weight:600;font-size:15px!important;min-height:22px;margin-top:14px}
+#rsvp-feedback.err{color:#f0a08e}#rsvp-feedback.ok{color:var(--gold)}
+
+/* 10 · Trazos de texto metálico sin cortes */
+.h-amp,.ft-nms,.gr-sign,.loc-time,.clk-plaque-date{
+  padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;
+  line-height:1.25;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.loc-time{margin-top:calc(18px - .22em);margin-bottom:calc(6px - .22em)}
+.gr-sign{margin-top:calc(30px - .22em)}
+
+/* Datos en sans legible */
+.loc-time,.itv3-time{font-family:'Raleway',sans-serif!important;font-weight:600!important}
+.loc-time{font-size:clamp(34px,10vw,44px)!important;letter-spacing:1px}
+.itv3-time{font-size:30px!important;letter-spacing:2px!important;text-indent:2px!important}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-drift,.hero-sheen,.ink-bg i,.lev,.fam-card,.dc-fig img,.pal-sw,.pal-sw::before{animation:none!important}
+}
   </style>
 </head>
 <body>
@@ -952,9 +1069,9 @@ body{font-weight:500}
 
 <!-- 1. HERO -->
 <section id="hero">
-  <div class="h-bg" id="heroBg">
-    <img src="hero.jpg"
-         alt="Shuroaid y Daniela" loading="eager" id="heroPic">
+  <div class="h-bg" id="heroBg" role="img" aria-label="Shuroaid y Daniela">
+    <i class="hero-drift" style="background-image:url('hero.jpg')"></i>
+    <i class="hero-sheen"></i>
   </div>
   <div class="h-ov"></div>
   <div class="h-frame"></div>
@@ -987,7 +1104,8 @@ body{font-weight:500}
 
 
 <!-- 2. RELOJ ANTIGUO + CUENTA REGRESIVA -->
-<section id="countdown">
+<section id="countdown" class="has-ink">
+  <div class="ink-bg  " aria-hidden="true"><i style="background-image:url('ink/ink-oval.webp')"></i></div>
   <span class="lbl">La hora señalada</span>
   <h2 class="ttl">El Gran Día</h2>
   <div class="gline"></div>
@@ -1054,7 +1172,8 @@ body{font-weight:500}
 
 
 <!-- 3. UBICACIONES -->
-<section id="location">
+<section id="location" class="has-ink">
+  <div class="ink-bg flip " aria-hidden="true"><i style="background-image:url('ink/ink-oval.webp')"></i></div>
   <span class="lbl">¿Dónde y cuándo?</span>
   <h2 class="ttl">La Celebración</h2>
   <div class="gline"></div>
@@ -1091,7 +1210,8 @@ body{font-weight:500}
 
 
 <!-- 5. ITINERARIO -->
-<section id="itinerary" style="overflow:visible;padding-left:24px;padding-right:24px">
+<section id="itinerary" class="has-ink" style="overflow:visible;padding-left:24px;padding-right:24px">
+  <div class="ink-bg  soft" aria-hidden="true"><i style="background-image:url('ink/ink-top.webp')"></i></div>
   <span class="lbl">El Gran Día</span>
   <h2 class="ttl">Itinerario</h2>
   <div class="gline"></div>
@@ -1165,7 +1285,8 @@ body{font-weight:500}
 
 
 <!-- 8. ÁLBUM COMPARTIDO -->
-<section id="album">
+<section id="album" class="has-ink">
+  <div class="ink-bg flip " aria-hidden="true"><i style="background-image:url('ink/ink-corner.webp')"></i></div>
   <span class="lbl">Captura cada momento</span>
   <h2 class="ttl">Álbum de fotos</h2>
   <div class="gline"></div>
@@ -1201,21 +1322,22 @@ body{font-weight:500}
 
 
 <!-- 9. DRESS CODE -->
-<section id="dresscode">
+<section id="dresscode" class="has-ink">
+  <div class="ink-bg flip soft" aria-hidden="true"><i style="background-image:url('ink/ink-hero.webp')"></i></div>
   <span class="lbl">Vestimenta</span>
   <h2 class="ttl">Código de Vestimenta</h2>
   <div class="gline"></div>
   <p class="dc-sub dc-main">Semiformal</p>
 
-  <div class="dc-cols" id="dcCols">
-    <div class="dc-col">
-      <img src="dress-caballero.png" alt="Traje caballero" class="dc-illustration" width="160" height="280" loading="lazy">
-      <div class="dc-col-ttl">Caballeros</div>
-    </div>
-    <div class="dc-col">
-      <img src="dress-dama.png" alt="Vestido dama" class="dc-illustration dc-ill-2" width="160" height="280" loading="lazy">
-      <div class="dc-col-ttl">Damas</div>
-    </div>
+  <div class="dc-figs" id="dcCols">
+    <figure class="dc-fig">
+      <img src="dc-caballero.png" alt="Caballero de traje" width="300" height="610">
+      <figcaption class="dc-fig-label">Caballeros</figcaption>
+    </figure>
+    <figure class="dc-fig">
+      <img src="dc-dama.png" alt="Dama de vestido largo" width="248" height="604">
+      <figcaption class="dc-fig-label">Damas</figcaption>
+    </figure>
   </div>
 
   <p class="dc-cap">Colores sugeridos</p>
@@ -1234,7 +1356,8 @@ body{font-weight:500}
 
 
 <!-- 10. FAMILIA -->
-<section id="family">
+<section id="family" class="has-ink">
+  <div class="ink-bg  soft" aria-hidden="true"><i style="background-image:url('ink/ink-footer.webp')"></i></div>
   <span class="lbl">Con la bendición de</span>
   <h2 class="ttl">Padres y Testigos</h2>
   <div class="gline"></div>
@@ -1262,11 +1385,11 @@ body{font-weight:500}
   <div class="gline"></div>
   <div class="wheel-scene" id="wheel-scene">
     <div class="wheel-ring" id="wheel-ring">
-      <div class="wheel-card"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/a3a8669e-518c-49b3-9025-251bd2dafc91/1782267412293-0.jpg" alt="Shuroaid y Daniela" loading="lazy"></div>
-      <div class="wheel-card"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/a3a8669e-518c-49b3-9025-251bd2dafc91/1782267390613-4.jpg" alt="Shuroaid y Daniela" loading="lazy"></div>
-      <div class="wheel-card"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/a3a8669e-518c-49b3-9025-251bd2dafc91/1782267447884-0.jpg" alt="Shuroaid y Daniela" loading="lazy"></div>
-      <div class="wheel-card"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/a3a8669e-518c-49b3-9025-251bd2dafc91/1782267476584-0.jpg" alt="Shuroaid y Daniela" loading="lazy"></div>
-      <div class="wheel-card"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/a3a8669e-518c-49b3-9025-251bd2dafc91/1782267574417-0.jpg" alt="Shuroaid y Daniela" loading="lazy"></div>
+      <div class="wheel-card"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/a3a8669e-518c-49b3-9025-251bd2dafc91/1782267412293-0.jpg" alt="Shuroaid y Daniela"></div>
+      <div class="wheel-card"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/a3a8669e-518c-49b3-9025-251bd2dafc91/1782267390613-4.jpg" alt="Shuroaid y Daniela"></div>
+      <div class="wheel-card"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/a3a8669e-518c-49b3-9025-251bd2dafc91/1782267447884-0.jpg" alt="Shuroaid y Daniela"></div>
+      <div class="wheel-card"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/a3a8669e-518c-49b3-9025-251bd2dafc91/1782267476584-0.jpg" alt="Shuroaid y Daniela"></div>
+      <div class="wheel-card"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/a3a8669e-518c-49b3-9025-251bd2dafc91/1782267574417-0.jpg" alt="Shuroaid y Daniela"></div>
     </div>
   </div>
   <p class="gal-hint">Arrastra para girar</p>
@@ -1274,7 +1397,8 @@ body{font-weight:500}
 
 
 <!-- 12. RSVP -->
-<section id="rsvp">
+<section id="rsvp" class="has-ink">
+  <div class="ink-bg flip soft" aria-hidden="true"><i style="background-image:url('ink/ink-top.webp')"></i></div>
   <div class="rsvp-card">
     <svg class="rsvp-corner rsvp-corner--tl" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="var(--gold)" stroke-width=".9" opacity=".6"/><circle cx="2" cy="2" r="2.5" fill="var(--gold)" opacity=".5"/></svg>
     <svg class="rsvp-corner rsvp-corner--tr" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="var(--gold)" stroke-width=".9" opacity=".6"/><circle cx="2" cy="2" r="2.5" fill="var(--gold)" opacity=".5"/></svg>
@@ -1299,26 +1423,33 @@ body{font-weight:500}
       <h2 class="ttl" style="font-size:clamp(28px,7vw,38px);margin-bottom:14px">¿Nos acompañas?</h2>
       <p class="rsvp-text">Confirma tu asistencia antes del <strong style="color:var(--gold)">20 de noviembre de 2026</strong>. Nos encantará saber que estarás con nosotros.</p>
 
-      <div id="rsvpGreeting"></div>
+      <p class="rsvp-hi" id="rsvp-hi" style="display:none"></p>
+      <p class="rsvp-note" id="rsvp-pases-note"></p>
+      <div class="rsvp-boxes">
+        <div class="rsvp-pases" id="rsvp-pases-display"><span class="rsvp-pases-label">Pases</span><span class="rsvp-pases-num" id="rsvp-pases-num">1</span></div>
+        <div class="rsvp-pases" id="rsvp-menores-display" style="display:none"><span class="rsvp-pases-label">Menores</span><span class="rsvp-pases-num" id="rsvp-menores-num">0</span></div>
+      </div>
 
       <div class="rsvp-divider">
         <svg class="rsvp-divider-heart" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
       </div>
 
-      <div id="rsvpContent">
+      <div id="rsvp-bandeja">
         <div class="rsvp-toggle">
-          <button class="rsvp-toggle-btn" id="btnYes" type="button">¡Ahí estaré!</button>
+          <button class="rsvp-toggle-btn" id="btnYes" type="button">Asistiré</button>
           <button class="rsvp-toggle-btn" id="btnNo" type="button">No podré asistir</button>
         </div>
-
         <div class="rsvp-fields" id="rsvp-fields" style="display:none"></div>
-
-        <button class="rsvp-btn" id="rsvpConfirmBtn" type="button">
-          <span id="rsvp-btn-text">Confirmar asistencia</span>
-        </button>
-
-        <p id="rsvp-feedback" style="display:none"></p>
+        <button class="rsvp-btn" id="rsvpConfirmBtn" type="button"><span id="rsvp-btn-text">Confirmar asistencia</span></button>
       </div>
+
+      <div class="rsvp-gracias" id="rsvp-gracias" style="display:none">
+        <svg class="rsvp-gracias-icon" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8.5 12.5 11 15 16 9.5"/></svg>
+        <p class="rsvp-gracias-title" id="rsvp-gracias-title"></p>
+        <p class="rsvp-gracias-sub" id="rsvp-gracias-sub"></p>
+        <button class="rsvp-editar-btn" id="rsvp-editar-btn" type="button">Modificar mi respuesta</button>
+      </div>
+      <p id="rsvp-feedback"></p>
 
       <div class="rsvp-deadline">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
@@ -1330,7 +1461,8 @@ body{font-weight:500}
 
 
 <!-- 12b. AGRADECIMIENTO -->
-<section id="gracias">
+<section id="gracias" class="has-ink">
+  <div class="ink-bg  soft" aria-hidden="true"><i style="background-image:url('ink/ink-hero.webp')"></i></div>
   <span class="lbl">Gracias</span>
   <h2 class="ttl">Con todo nuestro amor</h2>
   <div class="gline"></div>
@@ -1476,10 +1608,13 @@ function heroAnim() {
     .to('#hDate',  { opacity: 1, duration: .8 }, 1.35)
     .to('#hScroll',{ opacity: 1, duration: .6 }, 1.8);
 
-  gsap.to('#heroBg', {
-    yPercent: 22, ease: 'none',
-    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
-  });
+  /* Al hacer scroll: textos suben, se desvanecen y difuminan; la foto sube y se difumina un poco */
+  if (!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    gsap.to('#hCnt', { y: -110, opacity: 0, filter: 'blur(10px)', ease: 'none',
+      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('#heroBg', { y: -70, filter: 'blur(5px) brightness(.92)', ease: 'none',
+      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+  }
 }
 
 /* ── BACKGROUND DEPTH ORBS ────────────────────────── */
@@ -1627,7 +1762,7 @@ function scrollAnims() {
     opacity: 0, y: 20, duration: .7, ease,
     scrollTrigger: { trigger: '#dresscode', start: 'top 82%', once: true }
   });
-  gsap.from('.dc-col', {
+  gsap.from('.dc-fig', {
     opacity: 0, y: 30, scale: .9, duration: .7, stagger: .15,
     ease: 'back.out(1.5)',
     scrollTrigger: { trigger: '#dcCols', start: 'top 86%', once: true }
@@ -1770,232 +1905,172 @@ function toggleMusic() {
   });
 })();
 
-/* ── RSVP · PANEL INTEGRATION (patrón estándar) ──────── */
+/* ── RSVP · Panel de Invitados (X pases, estilo jennifer-y-marcel) ── */
 function initRSVP(){
-  const PANEL_API = 'https://panel-invitados.vercel.app/api/confirmar';
-  const RSVP_URL  = 'https://boda-shuroaid-y-daniela.vercel.app';
-  const DEADLINE  = new Date(2026, 10, 20, 23, 59, 59, 999);
-  const frozen    = Date.now() > DEADLINE.getTime();
-  const params    = new URLSearchParams(location.search);
-  const urlPara   = (params.get('para') || '').trim();
-  const rawP      = parseInt(params.get('pases') || '1', 10);
-  let pasesAsignados = (isNaN(rawP) || rawP < 1 || rawP > 20) ? 1 : rawP;
+  var API = 'https://panel-invitados.vercel.app/api/confirmar';
+  var URL_BODA = 'https://boda-shuroaid-y-daniela.vercel.app';
+  var DEADLINE = new Date('2026-11-20T23:59:59-06:00');
+  var qs = new URLSearchParams(location.search);
+  var para = (qs.get('para') || '').trim();
+  var pases = Math.max(1, Math.min(20, parseInt(qs.get('pases'), 10) || 1));
+  var menores = Math.max(0, Math.min(20, parseInt(qs.get('menores'), 10) || 0));
+  var frozen = new Date() > DEADLINE;
+  var estado = null, savedNames = [];
 
-  let rsvpChoice = null;
-  let savedNames = [];
+  var hi = document.getElementById('rsvp-hi'), note = document.getElementById('rsvp-pases-note');
+  var num = document.getElementById('rsvp-pases-num');
+  var menDisp = document.getElementById('rsvp-menores-display'), menNum = document.getElementById('rsvp-menores-num');
+  var fields = document.getElementById('rsvp-fields'), btn = document.getElementById('rsvpConfirmBtn'), btnText = document.getElementById('rsvp-btn-text');
+  var yes = document.getElementById('btnYes'), no = document.getElementById('btnNo'), fb = document.getElementById('rsvp-feedback');
+  var bandejaEl = document.getElementById('rsvp-bandeja'), graciasEl = document.getElementById('rsvp-gracias');
+  var gTitleEl = document.getElementById('rsvp-gracias-title'), gSubEl = document.getElementById('rsvp-gracias-sub'), editarBtn = document.getElementById('rsvp-editar-btn');
+  if (!btn || !yes) return;
 
-  const greeting = document.getElementById('rsvpGreeting');
-  const fieldsEl = document.getElementById('rsvp-fields');
-  const btnYes   = document.getElementById('btnYes');
-  const btnNo    = document.getElementById('btnNo');
-  const btnConf  = document.getElementById('rsvpConfirmBtn');
-  const btnText  = document.getElementById('rsvp-btn-text');
-  const feedEl   = document.getElementById('rsvp-feedback');
-  if(!btnConf || !btnYes) return;
-
-  function paintGreeting(){
-    if(!greeting) return;
-    greeting.innerHTML =
-      '<p class="rsvp-greeting">¡Hola, ' + urlPara + '!</p>' +
-      '<p class="rsvp-passes">Tienes <strong style="color:var(--gold)">' + pasesAsignados + '</strong> pase' + (pasesAsignados > 1 ? 's' : '') + ' asignado' + (pasesAsignados > 1 ? 's' : '') + '</p>';
+  function paintPases(){
+    num.textContent = pases;
+    note.textContent = pases === 1 ? 'Hemos reservado un lugar para ti.' : 'Hemos reservado ' + pases + ' lugares en tu honor.';
+    if (menores > 0){ menNum.textContent = menores; menDisp.style.display = ''; } else menDisp.style.display = 'none';
   }
+  if (para){ hi.textContent = para; hi.style.display = ''; }
+  paintPases();
 
-  if(urlPara){
-    paintGreeting();
-    btnYes.disabled = true;
-    btnNo.disabled  = true;
-  }
-
-  function renderFields(n){
-    fieldsEl.innerHTML = '';
-    for(let i = 0; i < n; i++){
-      const inp = document.createElement('input');
-      inp.type = 'text';
-      inp.className = 'rsvp-input';
-      inp.placeholder = n === 1 ? 'Tu nombre completo' : 'Invitado ' + (i+1);
-      inp.autocomplete = 'off';
-      inp.maxLength = 60;
-      inp.value = savedNames[i] || '';
-      ((idx) => inp.addEventListener('input', function(){ savedNames[idx] = this.value; }))(i);
-      fieldsEl.appendChild(inp);
+  function setFeedback(t, c){ fb.textContent = t; fb.className = c || ''; }
+  function buildFields(){
+    fields.innerHTML = '';
+    for (var i = 0; i < pases; i++){
+      var inp = document.createElement('input'); inp.type = 'text'; inp.className = 'rsvp-input';
+      inp.placeholder = pases === 1 ? 'Tu nombre completo' : 'Nombre completo del invitado ' + (i + 1);
+      inp.autocomplete = 'name'; inp.maxLength = 60;
+      if (savedNames[i]) inp.value = savedNames[i];
+      fields.appendChild(inp);
     }
   }
+  function selectRsvp(v){
+    estado = v; yes.classList.toggle('on', v === 'confirmado'); no.classList.toggle('on', v === 'declino');
+    if (v === 'confirmado'){ buildFields(); fields.style.display = ''; }
+    else { fields.innerHTML = ''; fields.style.display = 'none'; }
+  }
+  yes.addEventListener('click', function(){ if (!frozen) selectRsvp('confirmado'); });
+  no.addEventListener('click', function(){ if (!frozen) selectRsvp('declino'); });
 
-  function selectRsvp(choice){
-    rsvpChoice = choice;
-    if(choice === 'yes'){
-      btnYes.className = 'rsvp-toggle-btn selected-yes';
-      btnNo.className  = 'rsvp-toggle-btn';
-      renderFields(pasesAsignados);
-      fieldsEl.style.display = 'flex';
+  function mostrarGracias(est, nombres){
+    if (est === 'confirmado'){
+      gTitleEl.textContent = '¡Gracias por confirmar!';
+      gSubEl.textContent = nombres.length === 1 ? 'Te esperamos, ' + nombres[0] + '.' : 'Confirmamos ' + nombres.length + ' lugares: ' + nombres.join(', ') + '.';
     } else {
-      btnYes.className = 'rsvp-toggle-btn';
-      btnNo.className  = 'rsvp-toggle-btn selected-no';
-      fieldsEl.style.display = 'none';
-      fieldsEl.innerHTML = '';
+      gTitleEl.textContent = 'Gracias por avisarnos';
+      gSubEl.textContent = 'Lamentamos que no puedas acompañarnos. Te vamos a extrañar.';
     }
+    bandejaEl.style.display = 'none'; graciasEl.style.display = '';
+  }
+  function abrirBandeja(){ graciasEl.style.display = 'none'; bandejaEl.style.display = ''; setFeedback('', ''); }
+  editarBtn.addEventListener('click', function(){ if (!frozen) abrirBandeja(); });
+
+  if (frozen){
+    yes.disabled = no.disabled = btn.disabled = true; editarBtn.disabled = true;
+    btnText.textContent = 'Confirmaciones cerradas';
+    setFeedback('La fecha límite para confirmar ya pasó.', 'err');
   }
 
-  btnYes.addEventListener('click', () => selectRsvp('yes'));
-  btnNo.addEventListener('click',  () => selectRsvp('no'));
-
-  if(urlPara){
-    fetch(PANEL_API + '?nombre=' + encodeURIComponent(urlPara) + '&url_boda=' + encodeURIComponent(RSVP_URL))
-      .then(r => r.json())
-      .then(resp => {
-        const d = resp.invitado;
-        if(d && typeof d.pases === 'number' && d.pases > 0 && d.pases <= 20){
-          pasesAsignados = d.pases;
-          paintGreeting();
+  if (para){
+    fetch(API + '?nombre=' + encodeURIComponent(para) + '&url_boda=' + encodeURIComponent(URL_BODA))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        var inv = d && d.invitado; if (!inv) return;
+        if (inv.pases){ pases = Math.max(1, Math.min(20, parseInt(inv.pases, 10) || pases)); }
+        if (typeof inv.menores === 'number'){ menores = Math.max(0, inv.menores); }
+        paintPases();
+        if (inv.estado === 'confirmado' || inv.estado === 'declino'){
+          savedNames = inv.nombres_confirmados || [];
+          selectRsvp(inv.estado); btnText.textContent = 'Actualizar respuesta';
+          mostrarGracias(inv.estado, savedNames);
         }
-        btnYes.disabled = false;
-        btnNo.disabled  = false;
-        if(d && (d.estado === 'confirmado' || d.estado === 'declino')){
-          if(d.nombres_confirmados && d.nombres_confirmados.length){
-            savedNames = d.nombres_confirmados.slice();
-          }
-          selectRsvp(d.estado === 'confirmado' ? 'yes' : 'no');
-          btnText.textContent = 'Actualizar respuesta';
-          feedEl.style.display = 'block';
-          feedEl.style.color = 'var(--gold)';
-          feedEl.textContent = d.estado === 'confirmado'
-            ? '¡Ya tienes confirmada tu asistencia! Puedes actualizar tu respuesta.'
-            : 'Ya tienes registrado que no podrás asistir. Puedes cambiar tu respuesta.';
-        }
-      })
-      .catch(() => {
-        btnYes.disabled = false;
-        btnNo.disabled  = false;
-      });
+      }).catch(function(){});
   }
 
-  if(frozen){
-    btnYes.disabled = true;
-    btnNo.disabled  = true;
-    btnConf.disabled = true;
-    btnText.textContent = 'Fecha límite alcanzada';
-    feedEl.style.display = 'block';
-    feedEl.textContent = 'La fecha para confirmar asistencia ha pasado.';
-  }
-
-  btnConf.addEventListener('click', () => {
-    if(frozen) return;
-    if(!rsvpChoice){
-      feedEl.style.display = 'block';
-      feedEl.style.color = '#e8a090';
-      feedEl.textContent = 'Por favor selecciona si asistirás o no.';
-      return;
+  btn.addEventListener('click', function(){
+    if (frozen) return;
+    if (!para){ setFeedback('Abre tu enlace personal de invitación para confirmar.', 'err'); return; }
+    if (!estado){ setFeedback('Elige si asistirás o no.', 'err'); return; }
+    var nombres = [];
+    if (estado === 'confirmado'){
+      fields.querySelectorAll('input').forEach(function(i){ var v = i.value.trim(); if (v) nombres.push(v); });
+      if (!nombres.length){ setFeedback('Escribe al menos un nombre.', 'err'); return; }
     }
-    let nombres = [];
-    if(rsvpChoice === 'yes'){
-      const inputs = fieldsEl.querySelectorAll('.rsvp-input');
-      for(let i = 0; i < inputs.length; i++){
-        const v = inputs[i].value.trim();
-        if(v) nombres.push(v);
-      }
-      if(nombres.length === 0){
-        feedEl.style.display = 'block';
-        feedEl.style.color = '#e8a090';
-        feedEl.textContent = 'Por favor escribe al menos un nombre.';
-        return;
-      }
-    }
-    btnText.textContent = 'Enviando…';
-    btnConf.disabled = true;
-    feedEl.style.display = 'none';
-    feedEl.textContent = ''; feedEl.style.color = '';
-    fetch(PANEL_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nombre: urlPara || 'Invitado',
-        url_boda: RSVP_URL,
-        estado: rsvpChoice === 'yes' ? 'confirmado' : 'declino',
-        pases_confirmados: rsvpChoice === 'yes' ? nombres.length : 0,
-        nombres_confirmados: nombres
+    btn.disabled = true; setFeedback('Enviando…', '');
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre: para, url_boda: URL_BODA, estado: estado, pases_confirmados: estado === 'confirmado' ? nombres.length : 0, nombres_confirmados: nombres }) })
+      .then(function(r){ return r.json().then(function(d){ return { ok: r.ok, d: d }; }); })
+      .then(function(res){
+        btn.disabled = false;
+        if (!res.ok || (res.d && res.d.ok === false)){ setFeedback('No pudimos registrar tu respuesta. Intenta de nuevo.', 'err'); return; }
+        savedNames = nombres; btnText.textContent = 'Actualizar respuesta'; setFeedback('', '');
+        mostrarGracias(estado, nombres);
+        if (estado === 'confirmado' && window.elyConfetti) window.elyConfetti();
       })
-    })
-    .then(r => r.json())
-    .then(() => {
-      btnText.textContent = 'Actualizar respuesta';
-      btnConf.disabled = false;
-      feedEl.style.display = 'block';
-      feedEl.style.color = rsvpChoice === 'yes' ? '#8fd88a' : 'var(--gold)';
-      feedEl.textContent = rsvpChoice === 'yes'
-        ? '¡Tu asistencia ha sido confirmada! Nos vemos pronto. ✦'
-        : 'Hemos registrado que no podrás asistir. ¡Gracias por avisarnos!';
-      if(rsvpChoice === 'yes' && window.elyConfetti) window.elyConfetti();
-    })
-    .catch(() => {
-      btnText.textContent = 'Confirmar asistencia';
-      btnConf.disabled = false;
-      feedEl.style.display = 'block';
-      feedEl.style.color = '#e8a090';
-      feedEl.textContent = 'Error de conexión. Intenta de nuevo.';
-    });
+      .catch(function(){ btn.disabled = false; setFeedback('Sin conexión. Intenta de nuevo.', 'err'); });
   });
 }
 
-/* ── 3D WHEEL GALLERY ──────────────────────────────── */
+/* ── 3D WHEEL GALLERY · giro continuo, inercia, espejo y lightbox ── */
 function initWheel() {
-  var ring = document.getElementById('wheel-ring');
-  if (!ring) return;
-  var cards = ring.querySelectorAll('.wheel-card');
-  var n = cards.length;
+  var scene = document.getElementById('wheel-scene'), ring = document.getElementById('wheel-ring');
+  if (!ring || ring.__on) return; ring.__on = 1;
+  var cards = ring.querySelectorAll('.wheel-card'), n = cards.length;
   if (!n) return;
-  var radius = Math.min(210, window.innerWidth * 0.52);
-  var rot = 0, vel = 0, isDrag = false, startX = 0, startRot = 0, lastX = 0, rafId = null;
-
-  cards.forEach(function (card, i) {
-    card.style.transform = 'rotateY(' + (360 / n * i) + 'deg) translateZ(' + radius + 'px)';
+  cards.forEach(function (card) {
+    var img = card.querySelector('img');
+    if (!img || card.querySelector('.wc-photo')) return;
+    img.removeAttribute('loading');
+    var ph = document.createElement('div'); ph.className = 'wc-photo';
+    card.insertBefore(ph, img); ph.appendChild(img);
+    var rf = document.createElement('div'); rf.className = 'wc-ref'; rf.setAttribute('aria-hidden', 'true');
+    rf.innerHTML = '<img alt="" src="' + img.getAttribute('src') + '">';
+    card.appendChild(rf);
   });
+  var radius = Math.min(210, window.innerWidth * 0.52);
+  cards.forEach(function (card, i) { card.style.transform = 'rotateY(' + (360 / n * i) + 'deg) translateZ(' + radius + 'px)'; });
 
+  var rot = 0, vel = 0, drag = false, sx = 0, sr = 0, lx = 0, moved = 0, auto = true, resumeT = 0, visible = true;
   function setRot() { gsap.set(ring, { rotateY: rot }); }
   setRot();
-
-  gsap.from('#wheel-scene', { opacity: 0, scale: .85, duration: .9, ease: 'back.out(1.3)' });
+  var RMw = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  gsap.ticker.add(function () {
+    if (!visible || drag) return;
+    if (Math.abs(vel) > 0.05) { rot += vel; vel *= 0.94; setRot(); }
+    else if (auto && !RMw) { rot += 0.12; setRot(); }
+  });
+  function down(x) { drag = true; ring.classList.add('dragging'); sx = lx = x; sr = rot; vel = 0; moved = 0; auto = false; clearTimeout(resumeT); }
+  function move(x) { if (!drag) return; moved = Math.max(moved, Math.abs(x - sx)); rot = sr + (x - sx) * 0.45; vel = (x - lx) * 0.5; lx = x; setRot(); }
+  function up(e) {
+    if (!drag) return;
+    drag = false; ring.classList.remove('dragging');
+    resumeT = setTimeout(function () { auto = true; }, 1800);
+    if (moved < 6 && e && e.target && e.target.closest) {
+      var c = e.target.closest('.wheel-card');
+      if (c) openLightbox(c.querySelector('.wc-photo img').getAttribute('src'));
+    }
+  }
+  ring.addEventListener('mousedown', function (e) { e.preventDefault(); down(e.clientX); });
+  window.addEventListener('mousemove', function (e) { move(e.clientX); });
+  window.addEventListener('mouseup', up);
+  ring.addEventListener('touchstart', function (e) { down(e.touches[0].clientX); }, { passive: true });
+  ring.addEventListener('touchmove', function (e) { move(e.touches[0].clientX); }, { passive: true });
+  ring.addEventListener('touchend', up);
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(scene);
   gsap.from('.gal-hint', { opacity: 0, y: 10, duration: .6, delay: .5 });
-
-  function inertia() {
-    if (isDrag) return;
-    rot += vel;
-    vel *= 0.94;
-    setRot();
-    if (Math.abs(vel) > 0.05) rafId = requestAnimationFrame(inertia);
+}
+function openLightbox(src) {
+  var lb = document.getElementById('lb');
+  if (!lb) {
+    lb = document.createElement('div'); lb.id = 'lb';
+    lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-label', 'Foto ampliada');
+    lb.innerHTML = '<img alt="Foto de Shuroaid y Daniela"><button type="button" aria-label="Cerrar foto">✕</button>';
+    document.body.appendChild(lb);
+    lb.addEventListener('click', function () { lb.classList.remove('on'); });
   }
-
-  function pointerDown(x) {
-    isDrag = true; ring.classList.add('dragging');
-    startX = x; lastX = x; startRot = rot; vel = 0;
-    if (rafId) cancelAnimationFrame(rafId);
-  }
-  function pointerMove(x) {
-    if (!isDrag) return;
-    var dx = x - startX;
-    rot = startRot + dx * 0.45;
-    vel = (x - lastX) * 0.5;
-    lastX = x; setRot();
-  }
-  function pointerUp() {
-    if (!isDrag) return;
-    isDrag = false; ring.classList.remove('dragging');
-    rafId = requestAnimationFrame(inertia);
-  }
-
-  ring.addEventListener('mousedown', function (e) { e.preventDefault(); pointerDown(e.clientX); });
-  window.addEventListener('mousemove', function (e) { pointerMove(e.clientX); });
-  window.addEventListener('mouseup', pointerUp);
-  ring.addEventListener('touchstart', function (e) { pointerDown(e.touches[0].clientX); }, { passive: true });
-  ring.addEventListener('touchmove', function (e) { pointerMove(e.touches[0].clientX); }, { passive: true });
-  ring.addEventListener('touchend', pointerUp);
-
-  var auto = true;
-  (function spin() {
-    if (auto && !isDrag) { rot += 0.12; setRot(); }
-    requestAnimationFrame(spin);
-  })();
-  ring.addEventListener('mousedown', function () { auto = false; });
-  ring.addEventListener('touchstart', function () { auto = false; });
+  lb.querySelector('img').src = src;
+  lb.classList.add('on');
 }
 
 /* ── COPY CLABE ────────────────────────────────────── */
@@ -2119,7 +2194,7 @@ function startClock(){
 var FX = (function(){
   var cv = document.getElementById('fallFx');
   if (!cv || RM) return { beat: function(){} };
-  var cx = cv.getContext('2d'), W, H, DPR = Math.min(2, window.devicePixelRatio || 1), P = [], MAX = 42;
+  var cx = cv.getContext('2d'), W, H, DPR = Math.min(2, window.devicePixelRatio || 1), P = [], MAX = 28;
   function rs(){ W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; cx.setTransform(DPR, 0, 0, DPR, 0, 0); }
   rs(); addEventListener('resize', rs);
   var NOTES = ['♪','♫','♩','♬'], COL = ['#D4AF37','#F1DC8A','#E9CF6E','#B8912A'];
@@ -2229,18 +2304,66 @@ function safetyNet(){
   document.querySelectorAll('.sheen').forEach(function(el){ var r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) el.classList.add('in'); });
   var cw = document.getElementById('clkWrap'); if (cw) { var rc = cw.getBoundingClientRect(); if (rc.top < vh && rc.bottom > 0) startClock(); }
 }
+/* ── Fundido uniforme entre secciones (color medio en cada frontera, curva smoothstep) ── */
+function initSectionFades(){
+  var EDGES = { hero: [null, '#080808'], countdown: ['#181610', '#12110a'], calendar: ['#222018', '#12110a'],
+    dresscode: ['#181610', '#1a1810'], gifts: ['#222018', '#0e0d08'], gallery: ['#222018', '#222018'], footer: ['#181610', '#0e0d08'] };
+  var secs = [].slice.call(document.querySelectorAll('#main-content > section, #main-content > footer'));
+  if (!secs.length || secs[0].querySelector('.sf')) return;
+  var PAGE = [8, 8, 8];
+  secs.forEach(function(sec){ var e = EDGES[sec.id]; if (!e) return;
+    if (e[0] && !sec.dataset.top) sec.dataset.top = e[0]; if (e[1] && !sec.dataset.bot) sec.dataset.bot = e[1]; });
+  function hex(h){ h = h.replace('#', ''); return [0, 2, 4].map(function(k){ return parseInt(h.substr(k, 2), 16); }); }
+  function parse(c){ var m = (c || '').match(/[\d.]+/g); if (!m || (m.length > 3 && +m[3] === 0)) return null; return [+m[0], +m[1], +m[2]]; }
+  function edge(sec, which){ var d = sec.dataset[which]; return d ? hex(d) : (parse(getComputedStyle(sec).backgroundColor) || PAGE); }
+  function grad(dir, c, h){
+    var st = [];
+    for (var i = 0; i <= 8; i++){ var t = i / 8, a = 1 - t * t * (3 - 2 * t);
+      st.push('rgba(' + c.join(',') + ',' + a.toFixed(3) + ') ' + (t * h).toFixed(1) + 'px'); }
+    return 'linear-gradient(' + dir + ',' + st.join(',') + ')';
+  }
+  function layer(sec, pos, c, h){
+    var d = document.createElement('div');
+    d.className = 'sf sf-' + pos + (sec.id === 'hero' ? ' sf-hero' : ''); d.setAttribute('aria-hidden', 'true');
+    d.style.height = h + 'px'; d.style.background = grad(pos === 'top' ? 'to bottom' : 'to top', c, h);
+    sec.appendChild(d);
+  }
+  for (var i = 0; i < secs.length - 1; i++){
+    var A = secs[i], B = secs[i + 1], a = edge(A, 'bot'), b = edge(B, 'top');
+    var mid = [0, 1, 2].map(function(k){ return Math.round((a[k] + b[k]) / 2); });
+    layer(A, 'bot', mid, A.id === 'hero' ? 90 : 170);
+    layer(B, 'top', mid, A.id === 'hero' ? 90 : 170);
+  }
+}
+initSectionFades();
+
+/* ── Colores de vestimenta: los círculos se cruzan e intercambian de lugar (7 s) ── */
+function swapSwatches(){
+  if (RM) return;
+  document.querySelectorAll('#dresscode .palette').forEach(function(row){
+    var it = [].slice.call(row.querySelectorAll('.pal-item')), n = it.length;
+    if (n < 2 || row.__sw) return; row.__sw = 1;
+    var xs = it.map(function(e){ return e.offsetLeft; });
+    var tl = gsap.timeline({ repeat: -1 });
+    it.forEach(function(e, i){
+      var j = n - 1 - i; if (i === j) return;
+      var dx = xs[j] - xs[i], arc = i < j ? -12 : 12;
+      tl.to(e, { keyframes: [{ x: dx / 2, y: arc, duration: .7, ease: 'sine.in' }, { x: dx, y: 0, duration: .7, ease: 'sine.out' }] }, 0)
+        .to(e, { keyframes: [{ x: dx / 2, y: -arc, duration: .7, ease: 'sine.in' }, { x: 0, y: 0, duration: .7, ease: 'sine.out' }] }, 3.5);
+    });
+    tl.to({}, { duration: .01 }, 6.99);
+  });
+}
+
 window.lifeLayer = function(){
   ScrollTrigger.create({ trigger: '#clkWrap', start: 'top 80%', once: true, onEnter: startClock });
+  ScrollTrigger.create({ trigger: '#dresscode', start: 'top 85%', once: true, onEnter: swapSwatches });
   var snT = 0;
   addEventListener('scroll', function(){ clearTimeout(snT); snT = setTimeout(safetyNet, 250); }, { passive: true });
   setInterval(safetyNet, 1500);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ ScrollTrigger.refresh(); });
   if (RM) return;
 
-  /* Hero: la foto se acerca y los nombres suben y se desvanecen */
-  gsap.to('#heroBg', { scale: 1.08, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
-  gsap.fromTo('#hCnt', { y: 0, opacity: 1 }, { y: -70, opacity: 0, ease: 'none', immediateRender: false,
-    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom 15%', scrub: true } });
 
   /* Títulos: palabra por palabra */
   document.querySelectorAll('section .ttl').forEach(function(t){
