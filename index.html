@@ -1171,6 +1171,34 @@ body{font-weight:500}
 @keyframes ehTap{0%,60%,100%{transform:scale(1) translateY(0)}30%{transform:scale(.86) translateY(2px)}}
 @keyframes ehRing{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.25,1.6);opacity:0}}
 @media(prefers-reduced-motion:reduce){.envelope-hint,.eh-txt,.eh-ico,.eh-ring{animation:none!important}}
+
+/* Mesa de regalos Liverpool premium */
+.lv-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:14px;max-width:340px;margin:8px auto 0;
+  padding:38px 26px 30px;border-radius:18px;text-decoration:none;color:var(--cream);overflow:hidden;
+  background:linear-gradient(160deg,#17140c,#0b0a07 60%,#15120a);
+  box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 1px rgba(212,175,55,.45);animation:levitate 6.5s ease-in-out infinite}
+.lv-frame{position:absolute;inset:10px;border:1px solid rgba(212,175,55,.32);border-radius:12px;pointer-events:none}
+.lv-kicker{font-family:'Raleway',sans-serif;font-weight:700;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);padding-left:.34em}
+.lv-logo{width:min(220px,70%);height:auto;display:block;filter:drop-shadow(0 4px 12px rgba(212,175,55,.25))}
+.lv-sep{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.lv-num{display:flex;flex-direction:column;align-items:center;gap:4px;font-family:'Raleway',sans-serif;font-weight:700;font-size:20px;letter-spacing:.14em;color:#F1DC8A}
+.lv-num small{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--cream);opacity:.75;font-weight:600}
+.lv-btn{display:inline-flex;align-items:center;gap:10px;margin-top:6px;min-height:46px;padding:0 24px;border-radius:999px;
+  background:linear-gradient(135deg,#F1DC8A,#D4AF37 55%,#A8841F);color:#080808;
+  font-family:'Raleway',sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;box-shadow:0 8px 22px rgba(212,175,55,.3)}
+.lv-card:active{transform:scale(.98)}
+
+/* Colores: bolita pequeña, un renglón por grupo */
+.sw-groups{display:flex!important;flex-direction:column;align-items:center;gap:14px!important;max-width:320px;margin:20px auto 0!important}
+.sw-group{flex-direction:row!important;align-items:center;justify-content:center;gap:12px;width:100%;
+  padding:10px 18px;border-radius:999px;border:1px solid rgba(212,175,55,.22);background:rgba(8,8,8,.45)}
+.sw-group .dc-cap{margin:0!important;font-size:11px!important;letter-spacing:.22em!important;flex:0 0 auto;text-align:left;padding-left:0!important}
+.sw-one{width:26px!important;height:26px!important;flex:0 0 auto;animation:swFloat 6s ease-in-out infinite!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.5),0 0 0 1px rgba(212,175,55,.5),0 0 12px rgba(212,175,55,.3)!important}
+.sw-layer{transition:opacity 2.2s ease-in-out!important}
+.sw-x{top:-3px!important;bottom:-3px!important;width:1.5px!important}
+.sw-name{margin:0!important;font-size:12px!important;min-width:92px;text-align:left;transition:opacity .9s ease,transform .9s ease!important}
+@keyframes swFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
   </style>
 </head>
 <body>
@@ -1420,24 +1448,14 @@ body{font-weight:500}
   <div class="gline"></div>
   <p class="gf-sub">Si deseas obsequiarnos algo especial,<br>te compartimos nuestra mesa de regalos.</p>
 
-  <a class="gf-card sheen" href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/60049625" target="_blank" rel="noopener">
-    <div class="gf-card-top">
-      <div class="gf-logo"><span>L</span></div>
-      <p class="gf-ttl">Liverpool</p>
-    </div>
-    <p class="gf-nt">Número de evento · 60049625</p>
-  </a>
-
-  <div class="gf-qr">
-    <div class="alb-qr-frame sheen">
-      <img src="qr-regalos.png" alt="Código QR de la mesa de regalos Liverpool" class="alb-qr" width="280" height="280" loading="lazy">
-    </div>
-    <p class="alb-scan">Escanea para ver la mesa de regalos</p>
-  </div>
-
-  <a href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/60049625" target="_blank" rel="noopener" class="btn alb-btn" style="margin-top:22px">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
-    Ver mesa de regalos
+  <a class="lv-card sheen" href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/60049625" target="_blank" rel="noopener" aria-label="Ver nuestra mesa de regalos en Liverpool">
+    <span class="lv-frame" aria-hidden="true"></span>
+    <span class="lv-kicker">Mesa de regalos</span>
+    <img class="lv-logo" src="liverpool-oro.png" alt="Liverpool" width="900" height="201">
+    <span class="lv-sep" aria-hidden="true"></span>
+    <span class="lv-num"><small>Número de evento</small>60049625</span>
+    <span class="lv-btn">Ver mesa de regalos
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
   </a>
 </section>
 
@@ -2565,8 +2583,8 @@ function initSwatches(){
       L[nx].style.background = cols[i][0];
       L[nx].classList.add('on'); L[front].classList.remove('on'); front = nx;
       nm.classList.add('out');
-      setTimeout(function(){ nm.textContent = cols[i][1]; nm.classList.remove('out'); }, 450);
-    }, 2800); }, k * 900);
+      setTimeout(function(){ nm.textContent = cols[i][1]; nm.classList.remove('out'); }, 900);
+    }, 5200); }, k * 1600);
   });
 }
 initLooks(); initSwatches();
