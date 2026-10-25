@@ -33,11 +33,11 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden;overflow-x:clip}
 body{
   background:var(--ink);color:var(--cream);
   font-family:'Raleway',sans-serif;font-weight:400;
-  overflow-x:hidden;max-width:430px;margin:0 auto;
+  overflow:visible;overflow-x:clip;max-width:430px;margin:0 auto;
   -webkit-tap-highlight-color:transparent;
   touch-action:pan-y;
   font-size:clamp(15px,4vw,17px);line-height:1.6;
@@ -1020,6 +1020,19 @@ body{font-weight:500}
 @media(prefers-reduced-motion:reduce){
   .hero-drift,.hero-sheen,.ink-bg i,.lev,.fam-card,.dc-fig img,.pal-sw,.pal-sw::before{animation:none!important}
 }
+
+/* ── Menú inferior minimalista (celular) ── */
+@media(max-width:1023px){
+  .fmenu{width:auto;max-width:none;gap:2px;padding:4px 4px 4px 16px;justify-content:center;
+    background:rgba(8,8,8,.6);border-color:rgba(212,175,55,.2);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+  .fm-mono{font-size:17px;min-width:40px;margin-right:6px}
+  .fm-right{gap:0}
+  .fm-right::before{content:'';width:1px;height:18px;background:rgba(212,175,55,.25);margin:0 4px}
+  .fm-share{width:44px;height:44px;border:none;opacity:.85}
+  .fm-open{display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;background:transparent;color:var(--gold);
+    border:1px solid rgba(212,175,55,.32);font-weight:600;font-size:11px;letter-spacing:.26em}
+  .music-btn{width:42px!important;height:42px!important;font-size:16px!important;bottom:calc(max(1rem,env(safe-area-inset-bottom)) + 62px)!important}
+}
   </style>
 </head>
 <body>
@@ -1054,7 +1067,7 @@ body{font-weight:500}
     <button class="fm-share" id="fmShare" type="button" aria-label="Compartir invitación">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
     </button>
-    <button class="fm-open" id="fmOpen" type="button" aria-expanded="false" aria-controls="fmFull">☰ Menú</button>
+    <button class="fm-open" id="fmOpen" type="button" aria-expanded="false" aria-controls="fmFull"><svg width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M0 1h16M4 9h12" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>Menú</button>
   </div>
 </nav>
 <div class="fm-full" id="fmFull" aria-hidden="true">
@@ -2141,6 +2154,12 @@ function toast(msg) {
 </script>
 <script>
 /* ═══ CAPA DE VIDA · Shuroaid & Daniela ═══ */
+/* Las entradas gsap.from limpian sus estilos al terminar: si dos animan el mismo elemento,
+   la segunda ya no lo deja en opacity 0 */
+(function(){
+  var f = gsap.from.bind(gsap);
+  gsap.from = function(t, v){ v = v || {}; if (!('clearProps' in v)) v.clearProps = 'opacity,transform'; return f(t, v); };
+})();
 (function(){
 var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -2302,9 +2321,9 @@ function safetyNet(){
     var a = st.animation, t = st.trigger;
     if (!a || !t || a.progress() === 1 || st.vars.scrub) return;
     var r = t.getBoundingClientRect();
-    if (r.top < vh * .95 && r.bottom > 0) { a.progress(1); if (st.vars.onEnter) try { st.vars.onEnter(st); } catch(e){} }
+    if (r.top < vh * .95) { a.progress(1); if (st.vars.onEnter) try { st.vars.onEnter(st); } catch(e){} }
   });
-  document.querySelectorAll('.sheen').forEach(function(el){ var r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) el.classList.add('in'); });
+  document.querySelectorAll('.sheen').forEach(function(el){ if (el.getBoundingClientRect().top < vh) el.classList.add('in'); });
   var cw = document.getElementById('clkWrap'); if (cw) { var rc = cw.getBoundingClientRect(); if (rc.top < vh && rc.bottom > 0) startClock(); }
 }
 /* ── Fundido uniforme entre secciones (color medio en cada frontera, curva smoothstep) ── */
