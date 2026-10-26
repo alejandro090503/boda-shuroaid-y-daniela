@@ -1199,6 +1199,21 @@ body{font-weight:500}
 .sw-x{top:-3px!important;bottom:-3px!important;width:1.5px!important}
 .sw-name{margin:0!important;font-size:12px!important;min-width:92px;text-align:left;transition:opacity .9s ease,transform .9s ease!important}
 @keyframes swFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+
+/* Portada del cliente al abrir */
+.h-cnt{padding-bottom:150px}
+@media(max-width:1023px){.h-cnt{padding-bottom:156px}}
+.h-portada{position:relative;margin:0 auto 20px;width:min(76vw,330px,calc((100svh - 300px) * .667));border-radius:6px;overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,.75),0 0 0 1px rgba(212,175,55,.55),0 0 40px rgba(212,175,55,.22);
+  animation:portadaIn 1.6s cubic-bezier(.22,1,.36,1) both, portadaFloat 7s ease-in-out 1.6s infinite}
+.h-portada img{display:block;width:100%;height:auto}
+.h-portada-sheen{position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,240,190,.75) 46%,rgba(255,255,255,.35) 50%,transparent 64%);
+  background-size:300% 100%;animation:heroSheen 8s ease-in-out infinite}
+@keyframes portadaIn{from{opacity:0;transform:translateY(28px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes portadaFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.h-date-wrap{margin-top:6px!important}
+@media(prefers-reduced-motion:reduce){.h-portada,.h-portada-sheen{animation:none!important}}
   </style>
 </head>
 <body>
@@ -1264,17 +1279,10 @@ body{font-weight:500}
   <div class="h-particles" id="hPart"></div>
 
   <div class="h-cnt" id="hCnt">
-    <p class="h-we" id="hWe">Nos casamos</p>
-
-    <div class="h-div" id="hDiv">
-      <span class="h-div-dot">✦ · ✦</span>
-    </div>
-
-    <div class="h-clip"><span class="h-name" id="hN1">Shuroaid</span></div>
-    <div class="h-amp-clip"><span class="h-amp" id="hAmp">&amp;</span></div>
-    <div class="h-clip"><span class="h-name" id="hN2">Daniela</span></div>
-
-    <div class="gline" style="margin-top:28px" id="hLine"></div>
+    <figure class="h-portada" id="hPortada">
+      <img src="portada.webp" alt="Nuestra boda civil — Eduardo y Daniela" width="820" height="1230" fetchpriority="high">
+      <i class="h-portada-sheen" aria-hidden="true"></i>
+    </figure>
 
     <div class="h-date-wrap" id="hDate">
       <p class="h-date">19 · Diciembre · 2026</p>
@@ -1425,6 +1433,13 @@ body{font-weight:500}
 
     <div class="itv3-item rv">
       <div class="itv3-gem itv3-gem-alt"></div>
+      <div class="itv3-time">5:45<small>PM</small></div>
+      <div class="itv3-ev">Brindis</div>
+      <div class="itv3-sub">Apertura y mensaje de los padrinos de brindis</div>
+    </div>
+
+    <div class="itv3-item rv">
+      <div class="itv3-gem"></div>
       <div class="itv3-time">6:00<small>PM</small></div>
       <div class="itv3-ev">Banda de Rock</div>
     </div>
@@ -1547,10 +1562,10 @@ body{font-weight:500}
   <div class="gline"></div>
 
   <p class="fam-ttl">Padres del Novio</p>
-  <div class="fam-card"><p class="fam-nms"><span class="fam-n">Por confirmar</span></p></div><!-- PENDIENTE: padres del novio -->
+  <div class="fam-card"><p class="fam-nms"><span class="fam-n">Eduardo Peñaloza</span><br><span class="fam-sep">&amp;</span><br><span class="fam-n">Salones Gálvez</span></p></div>
 
   <p class="fam-ttl">Padres de la Novia</p>
-  <div class="fam-card"><p class="fam-nms"><span class="fam-n">Por confirmar</span></p></div><!-- PENDIENTE: padres de la novia -->
+  <div class="fam-card"><p class="fam-nms"><span class="fam-n">Margarita Pérez Silis</span><br><span class="fam-sep">&amp;</span><br><span class="fam-n">Benjamín Tavares Martínez&nbsp;†</span></p></div>
 
   <div class="sdiv"></div>
 
@@ -1558,7 +1573,12 @@ body{font-weight:500}
   <div class="fam-card"><p class="fam-nms"><span class="fam-n">Leonardo Morales</span><br><span class="fam-sep">&amp;</span><br><span class="fam-n">Miriam Villagómez</span></p></div>
 
   <p class="fam-ttl">Testigos de la Novia</p>
-  <div class="fam-card"><p class="fam-nms"><span class="fam-n">Marisela Mendoza Vazquez</span><br><span class="fam-sep">&amp;</span><br><span class="fam-n">Omar Jaramillo</span></p></div>
+  <div class="fam-card"><p class="fam-nms"><span class="fam-n">Irene Izazaga Ruiz</span><br><span class="fam-sep">&amp;</span><br><span class="fam-n">Desiree Vázquez Vázquez</span></p></div>
+
+  <div class="sdiv"></div>
+
+  <p class="fam-ttl">Padrinos de Brindis</p>
+  <div class="fam-card"><p class="fam-nms"><span class="fam-n">Diego Ferrer</span><br><span class="fam-sep">&amp;</span><br><span class="fam-n">Desiree Vázquez</span></p></div>
 </section>
 
 
