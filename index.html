@@ -1393,10 +1393,10 @@ body{font-weight:500}
   <div class="lev">
   <div class="loc-card" tabindex="0">
     <p class="loc-type" style="text-align:center">✦  Recepción &amp; Ceremonia Civil</p>
-    <h3 class="loc-name" style="text-align:center;font-family:'Playfair Display',serif;font-size:clamp(26px,7.4vw,32px);font-weight:500">Finca Los Pavo Reales</h3>
+    <h3 class="loc-name" style="text-align:center;font-family:'Playfair Display',serif;font-size:clamp(26px,7.4vw,32px);font-weight:500">Jardín Roma</h3>
     <div class="loc-time" style="text-align:center">2:00 <em>PM</em></div>
-    <p class="loc-addr" style="text-align:center">Corregidora, Querétaro · México</p>
-    <a href="https://maps.app.goo.gl/hCgMTL8oxSiW5SnP7"
+    <p class="loc-addr" style="text-align:center">Jardín · Terraza · Suites<br>Cerezos #2, Valles de los Pinos<br>Corregidora, Querétaro</p>
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Jard%C3%ADn+Roma+Cerezos+2+Valle+de+los+Pinos+Corregidora+Quer%C3%A9taro"
        target="_blank" rel="noopener" class="btn" style="max-width:310px;margin:0 auto">
       <svg class="pin-beat" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
       Ver en GPS / Google Maps
@@ -1412,7 +1412,7 @@ body{font-weight:500}
   <h2 class="ttl" style="font-size:clamp(22px,6vw,28px)">Guarda la Fecha</h2>
   <div class="gline"></div>
   <p class="cal-sub">Agrega nuestra boda a tu calendario<br>para no perderte ni un momento.</p>
-  <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Shuroaid+%26+Daniela&dates=20261219T140000/20261220T020000&ctz=America/Mexico_City&details=Recepci%C3%B3n+2:00+PM+-+Finca+Los+Pavo+Reales&location=Finca+Los+Pavo+Reales%2C+Corregidora%2C+Quer%C3%A9taro"
+  <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Shuroaid+%26+Daniela&dates=20261219T140000/20261220T020000&ctz=America/Mexico_City&details=Recepci%C3%B3n+2:00+PM+-+Jard%C3%ADn+Roma&location=Jard%C3%ADn+Roma%2C+Corregidora%2C+Quer%C3%A9taro"
      target="_blank" rel="noopener" id="calBtn"
      class="btn btn-gold" style="max-width:310px;margin:0 auto;display:flex;padding:16px 24px;font-size:clamp(11px,3vw,13px);letter-spacing:3px;border:none;box-shadow:0 6px 28px rgba(212,175,55,.55),0 0 30px rgba(212,175,55,.25),0 2px 4px rgba(0,0,0,.3)">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -1620,6 +1620,98 @@ body{font-weight:500}
 
 
 <!-- 12. RSVP -->
+<style>
+.hosp-carousel{position:relative;max-width:380px;margin:26px auto 0}
+.hosp-viewport{overflow:hidden}
+.hosp-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.hosp-slide{flex:0 0 100%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 34px}
+.hosp-photo{width:196px;height:196px;border-radius:50%;overflow:hidden;padding:4px;background:linear-gradient(135deg,#8a6d1f,#F1DC8A 45%,#D4AF37 60%,#7a5c14);box-shadow:0 14px 36px rgba(0,0,0,.55),0 0 26px rgba(212,175,55,.18);margin-bottom:22px}
+.hosp-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+.hosp-arrow{position:absolute;top:106px;transform:translateY(-50%);width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(8,8,8,.6);border:1px solid rgba(212,175,55,.45);border-radius:50%;cursor:pointer;color:var(--gold);z-index:2;padding:0}
+.hosp-arrow svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2}
+.hosp-arrow.prev{left:0} .hosp-arrow.next{right:0}
+.hosp-dots{display:flex;justify-content:center;gap:8px;margin-top:22px}
+.hosp-dots button{width:7px;height:7px;border-radius:50%;border:none;background:rgba(212,175,55,.28);cursor:pointer;padding:0;transition:background .25s,transform .25s}
+.hosp-dots button.active{background:var(--gold);transform:scale(1.35)}
+.hosp-name{font-family:'Playfair Display',serif;font-size:22px;color:var(--cream);margin-bottom:6px}
+.hosp-city{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;letter-spacing:.5px;color:var(--gold-lt);opacity:.85;margin-bottom:18px}
+.btn-hosp{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1px solid var(--gold);border-radius:50px;color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;text-decoration:none;transition:background .25s,color .25s}
+.btn-hosp:hover{background:var(--gold);color:#080808}
+.btn-hosp svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+</style>
+<section id="lodging" class="has-ink">
+  <span class="lbl">Para tu estancia</span>
+  <h2 class="ttl">Sugerencia de Hospedaje</h2>
+  <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;text-align:center;color:var(--cream);opacity:.8;max-width:320px;margin:10px auto 0">Si vienes de fuera, te recomendamos estas opciones cercanas.</p>
+  <div class="hosp-carousel">
+    <button class="hosp-arrow prev" aria-label="Anterior"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="hosp-arrow next" aria-label="Siguiente"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <div class="hosp-viewport"><div class="hosp-track" id="hospTrack">
+        <div class="hosp-slide">
+          <div class="hosp-photo"><img src="hosp-1.webp" alt="Casa Victoria"></div>
+          <div class="hosp-name">Casa Victoria</div>
+          <div class="hosp-city">Hasta 15 personas · 5 recámaras</div>
+          <a class="btn-hosp" href="https://www.airbnb.mx/rooms/1736361860395809545?check_in=2026-12-18&amp;check_out=2026-12-20" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>
+            Ver en Airbnb
+          </a>
+        </div>
+        <div class="hosp-slide">
+          <div class="hosp-photo"><img src="hosp-2.webp" alt="Casa Limón"></div>
+          <div class="hosp-name">Casa Limón</div>
+          <div class="hosp-city">Hasta 16 personas · 6 recámaras</div>
+          <a class="btn-hosp" href="https://www.airbnb.mx/rooms/53623968?check_in=2026-12-18&amp;check_out=2026-12-20" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>
+            Ver en Airbnb
+          </a>
+        </div>
+        <div class="hosp-slide">
+          <div class="hosp-photo"><img src="hosp-3.webp" alt="Casa Arizona"></div>
+          <div class="hosp-name">Casa Arizona</div>
+          <div class="hosp-city">Zakia · 3 recámaras</div>
+          <a class="btn-hosp" href="https://www.airbnb.mx/rooms/1250821011467557572?check_in=2026-12-18&amp;check_out=2026-12-20" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>
+            Ver en Airbnb
+          </a>
+        </div>
+        <div class="hosp-slide">
+          <div class="hosp-photo"><img src="hosp-4.webp" alt="Casa 333"></div>
+          <div class="hosp-name">Casa 333</div>
+          <div class="hosp-city">El Pueblito · 3 recámaras</div>
+          <a class="btn-hosp" href="https://www.airbnb.mx/rooms/1685715711836957021?check_in=2026-12-18&amp;check_out=2026-12-20" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>
+            Ver en Airbnb
+          </a>
+        </div>
+        <div class="hosp-slide">
+          <div class="hosp-photo"><img src="hosp-5.webp" alt="La Casa del Pueblito"></div>
+          <div class="hosp-name">La Casa del Pueblito</div>
+          <div class="hosp-city">Cine, bar y billar · 4 recámaras</div>
+          <a class="btn-hosp" href="https://www.airbnb.mx/rooms/1423462033148883091?check_in=2026-12-18&amp;check_out=2026-12-20" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>
+            Ver en Airbnb
+          </a>
+        </div>
+    </div></div>
+    <div class="hosp-dots" id="hospDots"><button class="active" aria-label="Opción 1"></button><button aria-label="Opción 2"></button><button aria-label="Opción 3"></button><button aria-label="Opción 4"></button><button aria-label="Opción 5"></button></div>
+  </div>
+</section>
+<script>
+(function(){
+  var track=document.getElementById('hospTrack'); if(!track) return;
+  var n=track.children.length, dots=document.querySelectorAll('#hospDots button'), idx=0;
+  function go(i){ idx=(i+n)%n; track.style.transform='translateX('+(-idx*100)+'%)';
+    dots.forEach(function(d,k){d.classList.toggle('active',k===idx);}); }
+  document.querySelector('.hosp-arrow.prev').addEventListener('click',function(){go(idx-1);});
+  document.querySelector('.hosp-arrow.next').addEventListener('click',function(){go(idx+1);});
+  dots.forEach(function(d,k){d.addEventListener('click',function(){go(k);});});
+  var sx=0,sy=0;
+  track.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+  track.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)) go(dx<0?idx+1:idx-1);},{passive:true});
+})();
+</script>
+
 <section id="rsvp" class="has-ink">
   <div class="ink-bg flip soft" aria-hidden="true"><i style="background-image:url('ink/ink-top.webp')"></i></div>
   <div class="rsvp-card">
